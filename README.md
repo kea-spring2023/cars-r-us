@@ -1,3 +1,3 @@
-# Info
+# Week-1
 
-Initial setup for most projects used this semester
+My solution to the week-1 part of Cars 'R' Us
