@@ -3,6 +3,8 @@
 ### Initial setup for most projects used this semester
 
 Many of the solutions to individual weeks, can be found in a branch for the given week
+This branch represents what we did together in the class, replace xxxx below with week2-crud to get your OWN copy starting from this branch
+
 
 ## How to get YOUR OWN Cars 'R' Us code, updated to a given week
 If you wan't to jump into a certain week, in order to be able to complete "next weeks" tasks/exercises, do the following in  **Git Bash**
