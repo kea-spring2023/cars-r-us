@@ -1,6 +1,5 @@
 package dat3.cars.entity;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 @Getter
 @Setter
@@ -61,7 +59,4 @@ public class Member {
   @MapKeyColumn(name = "description")
   @Column(name = "phone_number")
   Map<String,String> phones = new HashMap<>();
-
-
-
 }

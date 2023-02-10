@@ -37,18 +37,28 @@ public class MemberController {
     return memberService.addMember(body);
   }
 
-  //Security ADMIN  (eventually we will change it to use the currently log in user)
+  //Security ADMIN  (eventually we will change it to use the currently logged in user)
   @PutMapping("/{username}")
   ResponseEntity<Boolean> editMember(@RequestBody MemberRequest body, @PathVariable String username){
-    return null;
+    return memberService.editMember(body, username);
+  }
+
+  //Security ADMIN  (eventually we will change it to use the currently logged in user)
+  @PutMapping("/v2/{username}")
+  ResponseEntity<Boolean> editMemberV2(@RequestBody MemberRequest body, @PathVariable String username){
+    return memberService.editMemberV2(body, username);
   }
 
   //Security ADMIN ONLY
   @PatchMapping("/ranking/{username}/{value}")
-  void setRankingForUser(@PathVariable String username, @PathVariable int value) {}
+  void setRankingForUser(@PathVariable String username, @PathVariable int value) {
+    memberService.setRankingForUser(username, value);
+  }
 
   // Security ADMIN ONLY
   @DeleteMapping("/{username}")
-  void deleteMemberByUsername(@PathVariable String username) {}
+  ResponseEntity<Boolean> deleteMemberByUsername(@PathVariable String username) {
+    return memberService.deleteMemberByUsername(username);
+  }
 
 }
