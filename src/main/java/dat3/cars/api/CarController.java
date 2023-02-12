@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/cars")
+@RequestMapping("api/cars")
 @RestController
 public class CarController {
 
   CarService carService;
-  public CarService getCarService() {
-    return carService;
+
+  public CarController(CarService carService) {
+    this.carService = carService;
   }
 
   //Security ANONYMOUS
