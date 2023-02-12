@@ -38,7 +38,7 @@ public class CarService {
     return new CarResponse(newCar, true);
   }
 
-  public ResponseEntity<Boolean> editCar(CarRequest body, int id) {
+  public CarResponse editCar(CarRequest body, int id) {
     Car carToEdit = carRepository.findById(id).orElseThrow(() ->
             new ResponseStatusException(HttpStatus.BAD_REQUEST, "Car with this ID does not exist"));
     //ID can not be changed
@@ -46,8 +46,8 @@ public class CarService {
     carToEdit.setModel(body.getModel());
     carToEdit.setPricePrDay(body.getPricePrDay());
     carToEdit.setBestDiscount(body.getBestDiscount());
-    carRepository.save(carToEdit);
-    return ResponseEntity.ok(true);
+    Car saved = carRepository.save(carToEdit);
+    return new CarResponse(saved,true);
   }
 
   public void setPrice(int id, double newPrice) {

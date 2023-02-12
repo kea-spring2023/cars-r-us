@@ -13,7 +13,7 @@ public class CarRequest {
   double pricePrDay;
   int bestDiscount;
 
-  public static Car getFromCarRequest(CarRequest cr){
+  public static Car carFromCarRequest(CarRequest cr){
     return Car.builder().brand(cr.brand).model(cr.model).pricePrDay(cr.pricePrDay).bestDiscount(cr.bestDiscount).build();
   }
 }

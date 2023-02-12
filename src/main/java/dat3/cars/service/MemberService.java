@@ -11,7 +11,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class MemberService {
@@ -36,19 +35,19 @@ public class MemberService {
 
   public List<MemberResponse> getMembers(boolean includeAll) {
     List<Member> members = memberRepository.findAll();
-//    Please Never do it like this, at least not for the exam exercise
+//    Please Never do it like this, at least not at the exam
 //    List<MemberResponse> responses = new ArrayList<>();
 //    for(Member m: members){
 //      MemberResponse mr = new MemberResponse(m,includeAll);
 //      responses.add(mr);
 //    }
-    List<MemberResponse> responses = members.stream().map(member -> new MemberResponse(member,includeAll)).collect(Collectors.toList());
+    List<MemberResponse> responses = members.stream().map(member -> new MemberResponse(member,includeAll)).toList();
     return responses;
   }
 
-  public MemberResponse findMemberByUsername(String username) {
+  public MemberResponse findMemberByUsername(String username, boolean includeAll) {
     Member found = memberRepository.findById(username).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found"));
-    return new MemberResponse(found,false);
+    return new MemberResponse(found,includeAll);
   }
 
   public ResponseEntity<Boolean> editMember(MemberRequest body, String username){
@@ -69,7 +68,7 @@ public class MemberService {
 
   // ALTERNATIVE suggested by Mark Dyrby, who got the suggestion from "you know who"
   // This is the same as above, but with Optional
-  // If you don't understand why this  is (could be) better, please ask "you know who"
+  // If you don't understand why this  is better, please ask "you know who"
   public ResponseEntity<Boolean> editMemberV2(MemberRequest body, String username){
     Member memberToEdit = memberRepository.findById(username).orElseThrow(() ->
        new ResponseStatusException(HttpStatus.BAD_REQUEST,"Member with this ID does not exist"));

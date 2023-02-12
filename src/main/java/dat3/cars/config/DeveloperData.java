@@ -21,12 +21,12 @@ public class DeveloperData implements CommandLineRunner {
   }
 
   void makeTestData() {
-    memberRepository.save(new Member("kurt-w", "kw@a.dk", "test12", "Kurt", "Wonnegut", "Lyngbyvej 34", "Lyngby", "2800"));
-    memberRepository.save(new Member("hanne-w", "hw@a.dk", "test12", "Hanne", "Wonnegut", "Lyngbyvej 34", "Lyngby", "2800"));
+    memberRepository.save(new Member("kurt-w", "test12", "kw@a.dk","Kurt", "Wonnegut", "Lyngbyvej 34", "Lyngby", "2800"));
+    memberRepository.save(new Member("hanne-w", "test12","hw@a.dk", "Hanne", "Wonnegut", "Lyngbyvej 34", "Lyngby", "2800"));
 
     /*You can remove the following when we get to week2 if you like, they were only include to demonstrate
     collections of basic type*/
-    Member demoMember = new Member("demo", "demo@a.dk", "test12", "Demo", "Wonnegut", "Lyngbyvej 34", "Lyngby", "2800");
+    Member demoMember = new Member("demo",  "test12","demo@a.dk", "Demo", "Wonnegut", "Lyngbyvej 34", "Lyngby", "2800");
     demoMember.setFavoriteCarColors(new ArrayList<>(Arrays.asList("blue","silver","black")));
     Map<String,String> phoneNumbers = new HashMap<>();
     phoneNumbers.put("private","12345");

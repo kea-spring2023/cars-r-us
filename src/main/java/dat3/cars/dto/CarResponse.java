@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 public class CarResponse {
 
+  int id;
   String brand;
   String model;
   double pricePrDay;
@@ -23,6 +24,7 @@ public class CarResponse {
   LocalDateTime edited;
 
   public CarResponse(Car car, boolean includeAll) {
+    this.id = car.getId();
     this.brand = car.getBrand();
     this.model = car.getModel();
     this.pricePrDay = car.getPricePrDay();

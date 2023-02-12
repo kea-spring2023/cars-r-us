@@ -37,7 +37,7 @@ public class CarController {
 
   //Security ADMIN  ONLY
   @PutMapping("/{id}")
-  ResponseEntity<Boolean> editMember(@RequestBody CarRequest body, @PathVariable int id){
+  CarResponse editMember(@RequestBody CarRequest body, @PathVariable int id){
     return carService.editCar(body, id);
   }
 

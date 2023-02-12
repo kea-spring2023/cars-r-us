@@ -28,7 +28,7 @@ public class MemberController {
   //Security ADMIN ONLY
   @GetMapping(path = "/{username}")
   MemberResponse getMemberById(@PathVariable String username) {
-    return memberService.findMemberByUsername(username);
+    return memberService.findMemberByUsername(username, true);
   }
 
   //Security ANONYMOUS
