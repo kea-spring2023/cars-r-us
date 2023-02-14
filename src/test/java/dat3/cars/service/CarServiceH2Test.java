@@ -35,6 +35,8 @@ class CarServiceH2Test {
     carRepository.saveAndFlush(car1);
     carRepository.saveAndFlush(car2);
     carService = new CarService(carRepository);
+
+    dataIsInitialized = true;
   }
 
   @Test

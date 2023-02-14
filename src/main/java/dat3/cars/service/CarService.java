@@ -67,9 +67,11 @@ public class CarService {
   }
 
   public ResponseEntity<Boolean> deleteCar(int id) {
-    Car carToDelete = carRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Car with this ID does not exist"));
+    if(!carRepository.existsById(id)){
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Car with this ID does not exist");
+    }
     try {
-      carRepository.delete(carToDelete);
+      carRepository.deleteById(id);
       return ResponseEntity.ok(true);
     } catch (Exception e) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Could not delete car. Most likely because it part of a rental/reservation");

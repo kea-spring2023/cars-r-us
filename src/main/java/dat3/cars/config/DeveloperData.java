@@ -5,11 +5,11 @@ import dat3.cars.entity.Member;
 import dat3.cars.repositories.CarRepository;
 import dat3.cars.repositories.MemberRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@Controller
+@Component
 public class DeveloperData implements CommandLineRunner {
 
   CarRepository carRepository;

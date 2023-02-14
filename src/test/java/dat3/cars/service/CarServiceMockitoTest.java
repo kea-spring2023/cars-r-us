@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
@@ -17,8 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CarServiceMockitoTest {
@@ -117,6 +117,20 @@ class CarServiceMockitoTest {
   //@Test
   void setDiscount() {}
 
-  //@Test
-  void deleteCar() {}
+  @Test
+  void deleteCar() {
+    //Setup mock data
+    when(carRepository.existsById(car1.getId())).thenReturn(true);
+    doNothing().when(carRepository).deleteById(car1.getId());
+
+    //Here comes the test
+    ResponseEntity<Boolean> response = carService.deleteCar(1);
+    assertTrue(response.getBody());
+  }
+  @Test
+  void deleteNonExistingCarThrows() {
+    //Setup mock data
+    when(carRepository.existsById(car1.getId())).thenReturn(false);
+    assertThrows(ResponseStatusException.class,()->carService.deleteCar(1));
+  }
 }
