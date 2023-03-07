@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("api/cars")
+@RequestMapping("api/cars" )
 @RestController
+@CrossOrigin
 public class CarController {
 
   CarService carService;
@@ -29,6 +30,16 @@ public class CarController {
   CarResponse getCarById(@PathVariable int id) {
     return carService.findCarById(id, false);
   }
+  //Security ADMIN
+  @GetMapping(path = "/admin")
+  List<CarResponse>  getCarsAdmin() {
+    return carService.getCars(true);
+  }
+  //Security ADMIN
+  @GetMapping(path = "/admin/{id}")
+  CarResponse getCarByIdAdmin(@PathVariable int id) {
+    return carService.findCarById(id, true);
+  }
 
   //Security ADMIN
   @PostMapping
@@ -38,7 +49,7 @@ public class CarController {
 
   //Security ADMIN  ONLY
   @PutMapping("/{id}")
-  CarResponse editMember(@RequestBody CarRequest body, @PathVariable int id){
+  CarResponse editCar(@RequestBody CarRequest body, @PathVariable int id){
     return carService.editCar(body, id);
   }
 
